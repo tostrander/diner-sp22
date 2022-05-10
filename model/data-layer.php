@@ -9,3 +9,9 @@ function getMeals()
 {
     return array("breakfast", "brunch", "lunch", "dinner");
 }
+
+// Get the condiments for the order form
+function getCondiments()
+{
+    return array("ketchup", "mustard", "sriracha", "mayo", "kimchi");
+}

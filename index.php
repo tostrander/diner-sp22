@@ -58,13 +58,16 @@ $f3->route('GET /order', function($f3) {
 });
 
 //Define an order2 route
-$f3->route('POST /order2', function() {
+$f3->route('POST /order2', function($f3) {
     //echo "Order page";
 
     //Move orderForm1 data from POST to SESSION
     var_dump ($_POST);
     $_SESSION['food'] = $_POST['food'];
     $_SESSION['meal'] = $_POST['meal'];
+
+    //Add condiment data to hive
+    $f3->set('condiments', getCondiments());
 
     $view = new Template();
     echo $view->render('views/orderForm2.html');
