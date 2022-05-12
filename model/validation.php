@@ -19,3 +19,9 @@ function validFood($food)
 
     return strlen(trim($food)) >= 2;
 }
+
+//Validate meal
+function validMeal($meal)
+{
+    return in_array($meal, getMeals());
+}
