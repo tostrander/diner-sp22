@@ -1,7 +1,7 @@
 <include href="views/header.html"></include>
 <body>
     <div class="container">
-        <h1>My Diner</h1>
+        <h1>My Diner!!</h1>
         <h2>Order Part 1</h2>
 
         <form action="#" method="post" class="form-horizontal">
@@ -25,7 +25,11 @@
                 <label class="col-sm-4 control-label">Select a meal</label>
                 <div class="col-sm-4">
                     <repeat group="{{ @meals }}" value="{{ @meal }}">
-                        <label><input type="radio" name="meal" value="{{ @meal }}">
+                        <label><input type="radio" name="meal" value="{{ @meal }}"
+                            <check if="{{ @meal == @userMeal }}">
+                                      checked="checked"
+                            </check>
+                        >
                             {{ ucfirst(@meal) }}</label><br>
                     </repeat>
                 </div>
