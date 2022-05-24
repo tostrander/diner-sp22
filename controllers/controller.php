@@ -80,6 +80,7 @@ class Controller
         //Add meal data to hive
         $this->_f3->set('meals', DataLayer::getMeals());
 
+        //Display order form 1
         $view = new Template();
         echo $view->render('views/orderForm1.html');
     }
@@ -87,9 +88,6 @@ class Controller
     function order2()
     {
         //echo "Order page";
-
-        // Add condiment data to hive
-        $this->_f3->set('condiments', DataLayer::getCondiments());
 
         // If the form has been submitted
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -125,6 +123,10 @@ class Controller
             }
         }
 
+        // Add condiment data to hive
+        $this->_f3->set('condiments', DataLayer::getCondiments());
+
+        // Display Order2 form
         $view = new Template();
         echo $view->render('views/orderForm2.html');
     }
@@ -138,6 +140,7 @@ class Controller
         echo "</pre>";
         */
 
+        //Display summary page
         $view = new Template();
         echo $view->render('views/orderSummary.html');
 
