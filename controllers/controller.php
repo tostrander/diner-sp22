@@ -88,19 +88,41 @@ class Controller
     {
         //echo "Order page";
 
-        //Add condiment data to hive
+        // Add condiment data to hive
         $this->_f3->set('condiments', DataLayer::getCondiments());
 
-        //If the form has been submitted
+        // If the form has been submitted
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conds = "";
+
+            // Condiments are not required
             if (empty($_POST['conds'])) {
                 $conds = "none selected";
-            } else {
-                $conds = implode(", ", $_POST['conds']);
             }
-            $_SESSION['order']->setCondiments($conds);
-            header("location: summary");
+            // User selected condiments
+            else {
+
+                // Get condiments from post array
+                $userConds = $_POST['conds'];
+
+                // If condiments are valid, convert to string
+                if (Validation::validCondiments($userConds)) {
+                    $conds = implode(", ", $userConds);
+                }
+                else {
+                    $this->_f3->set('errors["cond"]', 'You spoofed me!');
+                }
+            }
+
+            //If there are no errors...
+            if (empty($this->_f3->get('errors'))) {
+
+                //Add condiment string to session array
+                $_SESSION['order']->setCondiments($conds);
+
+                //Redirect
+                header('location: summary');
+            }
         }
 
         $view = new Template();

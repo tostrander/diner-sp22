@@ -26,4 +26,19 @@ class Validation
     {
         return in_array($meal, DataLayer::getMeals());
     }
+
+    //Validate condiments
+    static function validCondiments($userCondArray)  //"mustard", "sarin gas"
+    {
+        $validCondArray = DataLayer::getCondiments();
+
+        //Make sure each user selection is in the array of valid options
+        foreach($userCondArray as $userCond) {
+            if (!in_array($userCond, $validCondArray)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
