@@ -29,6 +29,8 @@ class DataLayer
      */
     function saveOrder($order)
     {
+        var_dump($order);
+
         //1. Define the query
         $sql = "INSERT INTO diner_order (food, meal, condiments) 
                 VALUES (:food, :meal, :condiments)";
@@ -49,8 +51,27 @@ class DataLayer
 
         //5. Process the result
         $id = $this->_dbh->lastInsertId();
-        echo "Row inserted: $id";
+        //echo "Row inserted: $id";
         return $id;
+    }
+
+    function viewOrders()
+    {
+        //1. Define the query
+        $sql = "SELECT * FROM diner_order";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+
+        //4. Execute the prepared statement
+        $statement->execute();
+
+        //5. Process the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+        //var_dump($result);
     }
 
     //Static methods do not access instance data (fields)

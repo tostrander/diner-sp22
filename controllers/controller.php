@@ -18,6 +18,17 @@ class Controller
         echo $view->render('views/home.html');
     }
 
+    function admin()
+    {
+        //Get the orders from the DB and save them to the F3 hive
+        $orders = $GLOBALS['dataLayer']->viewOrders();
+        var_dump($orders);
+        $this->_f3->set('orders', $orders);
+
+        $view = new Template();
+        echo $view->render('views/admin.html');
+    }
+
     function order()
     {
         //echo "Order page";
@@ -139,6 +150,10 @@ class Controller
         var_dump ($_SESSION);
         echo "</pre>";
         */
+
+        //Write to database
+        $orderId = $GLOBALS['dataLayer']->saveOrder($_SESSION['order']);
+        $this->_f3->set('orderId', $orderId);
 
         //Display summary page
         $view = new Template();

@@ -14,11 +14,11 @@ class Order
      * @param $_meal
      * @param $_condiments
      */
-    public function __construct()
+    public function __construct($food = "", $meal = "", $condiments = "")
     {
-        $this->_food = "";
-        $this->_meal = "";
-        $this->_condiments = "";
+        $this->_food = $food;
+        $this->_meal = $meal;
+        $this->_condiments = $condiments;
     }
 
     /**

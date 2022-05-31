@@ -21,7 +21,7 @@ var_dump($order);
 
 //Test DataLayer class
 $dataLayer = new DataLayer();
-$dataLayer->saveOrder(new Order('burrito', 'dinner', 'salsa, sour cream'));
+//$dataLayer->saveOrder(new Order('burrito', 'dinner', 'salsa, sour cream'));
 //var_dump($dataLayer);
 
 //Create an instance of the Base class
@@ -34,6 +34,12 @@ $con = new Controller($f3);
 $f3->route('GET /', function() {
 
     $GLOBALS['con']->home();
+});
+
+//Define an admin route
+$f3->route('GET /admin', function() {
+
+    $GLOBALS['con']->admin();
 });
 
 //Define a breakfast route
