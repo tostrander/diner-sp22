@@ -19,6 +19,11 @@ $order->setCondiments("salsa, guacamole");
 var_dump($order);
 */
 
+//Test DataLayer class
+$dataLayer = new DataLayer();
+$dataLayer->saveOrder(new Order('burrito', 'dinner', 'salsa, sour cream'));
+//var_dump($dataLayer);
+
 //Create an instance of the Base class
 $f3 = Base::instance();
 
@@ -69,7 +74,7 @@ $f3->route('GET|POST /order2', function($f3) {
 
 //Define a summary route -> orderSummary.html
 $f3->route('GET|POST /summary', function() {
-
+    var_dump($_SESSION['order']);
     $GLOBALS['con']->summary();
 });
 
